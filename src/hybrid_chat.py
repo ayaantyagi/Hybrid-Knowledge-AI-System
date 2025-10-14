@@ -3,29 +3,46 @@ from dotenv import load_dotenv
 from src.embeddings import get_embeddings
 import openai
 import json
+import threading
+import functools
 
 load_dotenv()
 
-# Don't initialize external clients at import time. Create them when needed so
-# importing this module is safe during tests or in environments without
-# configured services.
+# Thread-safe cached clients to reduce per-request initialization overhead
+_pinecone_index = None
+_pinecone_lock = threading.Lock()
+
+_neo4j_driver = None
+_neo4j_lock = threading.Lock()
+
 
 def _get_pinecone_index():
-    try:
-        import pinecone
-    except Exception as e:
-        raise RuntimeError("pinecone package is required for pinecone_search") from e
-    api_key = os.getenv("PINECONE_API_KEY")
-    env = os.getenv("PINECONE_ENVIRONMENT")
-    index_name = os.getenv("PINECONE_INDEX_NAME")
-    if not api_key or not index_name:
-        raise RuntimeError("PINECONE_API_KEY and PINECONE_INDEX_NAME must be set for pinecone_search")
-    pinecone.init(api_key=api_key, environment=env)
-    return pinecone.Index(index_name)
+    """Return a cached Pinecone Index instance (initialize on first call)."""
+    global _pinecone_index
+    if _pinecone_index is not None:
+        return _pinecone_index
+    with _pinecone_lock:
+        if _pinecone_index is not None:
+            return _pinecone_index
+        try:
+            import pinecone
+        except Exception as e:
+            raise RuntimeError("pinecone package is required for pinecone_search") from e
+        api_key = os.getenv("PINECONE_API_KEY")
+        env = os.getenv("PINECONE_ENVIRONMENT")
+        index_name = os.getenv("PINECONE_INDEX_NAME")
+        if not api_key or not index_name:
+            raise RuntimeError("PINECONE_API_KEY and PINECONE_INDEX_NAME must be set for pinecone_search")
+        pinecone.init(api_key=api_key, environment=env)
+        _pinecone_index = pinecone.Index(index_name)
+        return _pinecone_index
 
+
+@functools.lru_cache(maxsize=256)
 def pinecone_search(query, top_k=3):
     index = _get_pinecone_index()
     q_emb = get_embeddings(query)[0]
+    # include_metadata=True so we can display snippets
     res = index.query(vector=q_emb, top_k=top_k, include_metadata=True)
     # format results
     hits = []
@@ -37,17 +54,30 @@ def pinecone_search(query, top_k=3):
         })
     return hits
 
+def _get_neo4j_driver():
+    """Return a cached neo4j driver (initialize on first call)."""
+    global _neo4j_driver
+    if _neo4j_driver is not None:
+        return _neo4j_driver
+    with _neo4j_lock:
+        if _neo4j_driver is not None:
+            return _neo4j_driver
+        try:
+            from neo4j import GraphDatabase
+        except Exception as e:
+            raise RuntimeError("neo4j package is required for neo4j_search") from e
+        uri = os.getenv("NEO4J_URI")
+        user = os.getenv("NEO4J_USER")
+        password = os.getenv("NEO4J_PASSWORD")
+        if not uri or not user or not password:
+            raise RuntimeError("NEO4J_URI/NEO4J_USER/NEO4J_PASSWORD must be set for neo4j_search")
+        _neo4j_driver = GraphDatabase.driver(uri, auth=(user, password))
+        return _neo4j_driver
+
+
+@functools.lru_cache(maxsize=256)
 def neo4j_search(query, limit=3):
-    try:
-        from neo4j import GraphDatabase
-    except Exception as e:
-        raise RuntimeError("neo4j package is required for neo4j_search") from e
-    uri = os.getenv("NEO4J_URI")
-    user = os.getenv("NEO4J_USER")
-    password = os.getenv("NEO4J_PASSWORD")
-    if not uri or not user or not password:
-        raise RuntimeError("NEO4J_URI/NEO4J_USER/NEO4J_PASSWORD must be set for neo4j_search")
-    driver = GraphDatabase.driver(uri, auth=(user, password))
+    driver = _get_neo4j_driver()
     cypher = '''
     MATCH (l:Location)
     WHERE toLower(l.name) CONTAINS toLower($query) OR toLower(l.description) CONTAINS toLower($query)
@@ -57,7 +87,6 @@ def neo4j_search(query, limit=3):
     with driver.session() as session:
         result = session.run(cypher, {"query": query, "limit": limit})
         data = [r.data() for r in result]
-    driver.close()
     return data
 
 def build_prompt(query, docs, graph):
