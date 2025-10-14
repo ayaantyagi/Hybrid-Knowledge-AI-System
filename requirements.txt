@@ -1,0 +1,12 @@
+neo4j
+py2neo
+pinecone-client
+openai
+streamlit
+networkx
+pyvis
+pandas
+pytest
+python-dotenv
+tqdm
+requests

@@ -1,0 +1,4 @@
+id,text,metadata
+doc1,"Central Park is one of the most visited urban parks in the world.","{\"source\": \"wiki\", \"text_snippet\": \"Central Park is one of the most visited...\", \"neo4j_id\": \"1\"}"
+doc2,"The Statue of Liberty was a gift from France symbolizing freedom.","{\"source\": \"wiki\", \"text_snippet\": \"Statue of Liberty symbolizes freedom.\", \"neo4j_id\": \"2\"}"
+doc3,"The Empire State Building was completed in 1931 and stands 381 meters tall.","{\"source\": \"wiki\", \"text_snippet\": \"Empire State Building completed 1931...\", \"neo4j_id\": \"3\"}"

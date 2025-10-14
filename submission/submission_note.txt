@@ -1,0 +1,21 @@
+Submission note to paste into the Google Form
+
+Name: Ayan
+Role applied for: AI Engineer
+
+Repository link: <paste your GitHub repo URL here>
+
+Short summary (1–2 sentences):
+I implemented a hybrid knowledge AI system that combines Pinecone for semantic retrieval, Neo4j for graph facts, and OpenAI for reasoning. The repo includes ingestion scripts, a Streamlit demo, and tests.
+
+What to run locally (quick):
+1. Copy .env.example -> .env and fill keys for OpenAI, Pinecone, Neo4j
+2. python -m venv .venv; .\.venv\Scripts\Activate.ps1; pip install -r requirements.txt
+3. docker run --name neo4j -p7474:7474 -p7687:7687 -e NEO4J_AUTH=neo4j/test neo4j:5
+4. python src/neo4j_loader.py --csv data/locations.csv --visualize
+5. python src/pinecone_uploader.py --csv data/docs.csv
+6. streamlit run src/app.py
+
+Notes: The UI gracefully handles missing keys and services; tests use mocks so `python -m pytest -q` runs without external services.
+
+Contact: Ayan

@@ -1,0 +1,16 @@
+Loom script (approx. 2 minutes)
+
+Intro (0:00–0:10)
+Hi — I’m Ayan. This is my submission for the Blue Enigma Labs AI Engineer challenge. I’ll briefly explain the architecture and show a short demo.
+
+Architecture (0:10–0:40)
+The system is hybrid: a vector database (Pinecone) stores semantic embeddings of documents, Neo4j stores structured location facts, and an LLM is used for reasoning over combined context. The ingestion pipeline embeds and upserts documents; a loader populates the Neo4j graph and can export an interactive HTML visualization.
+
+Demo (0:40–1:30)
+I’ll open the Streamlit demo. I type a location-related question into the input field and click Ask. The system performs two retrievals: similar documents from Pinecone and structured facts from Neo4j. It then builds a combined prompt and asks the LLM to generate a concise answer with citations. The UI displays the generated answer, supporting document snippets (with source and score), and graph hits; if a visualization is available it is embedded on the page.
+
+Design choices & trade-offs (1:30–1:55)
+I focused on clear module contracts and safe development behavior: modules don’t initialize network clients at import time, upserts are idempotent, and the uploader uses batching and retry/backoff. For production I would add async upserts, metrics, and secrets management.
+
+Closing (1:55–2:00)
+Thanks — I’d be happy to walk through code or expand any section in a live interview.
