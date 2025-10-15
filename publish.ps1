@@ -14,9 +14,9 @@ if (-not (Test-Path ".git")) {
     git init
 }
 
-Write-Host "Adding files and committing..."
+Write-Host 'Adding files and committing...'
 git add .
-git commit -m "Initial commit — Blue Enigma hybrid AI system"
+git commit -m 'Initial commit - Blue Enigma hybrid AI system'
 
 # try to use gh if available
 $gh = Get-Command gh -ErrorAction SilentlyContinue
@@ -39,9 +39,9 @@ if ($gh) {
         git branch -M main
         git push -u origin main
     } else {
-        Write-Host "gh CLI not found. Please create a repo on GitHub and run the following commands:" 
-        Write-Host "git remote add origin https://github.com/<your-username>/$RepoName.git"
-        Write-Host "git branch -M main"
-        Write-Host "git push -u origin main"
+    Write-Host 'gh CLI not found. Please create a repo on GitHub and run the following commands:'
+    Write-Host "git remote add origin https://github.com/<your-username>/$RepoName.git"
+    Write-Host 'git branch -M main'
+    Write-Host 'git push -u origin main'
     }
 }
