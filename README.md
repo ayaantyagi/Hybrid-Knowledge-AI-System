@@ -40,7 +40,7 @@ This project implements a hybrid retrieval + reasoning pipeline using:
  
 6. Run the Streamlit demo:
 
-   streamlit run src/app.py
+   streamlit run src/app.py 
 
 ## Files 
 - `src/neo4j_loader.py` — loads location csv into Neo4j
