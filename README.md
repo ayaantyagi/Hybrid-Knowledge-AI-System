@@ -42,7 +42,7 @@ This project implements a hybrid retrieval + reasoning pipeline using:
 
    streamlit run src/app.py
 
-## Files
+## Files 
 - `src/neo4j_loader.py` — loads location csv into Neo4j
 - `src/pinecone_uploader.py` — embeds & upserts docs to Pinecone
 - `src/embeddings.py` — OpenAI embedding helper
