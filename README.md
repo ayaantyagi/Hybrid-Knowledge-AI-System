@@ -37,7 +37,7 @@ This project implements a hybrid retrieval + reasoning pipeline using:
 
    python src/neo4j_loader.py
    python src/pinecone_uploader.py
-
+ 
 6. Run the Streamlit demo:
 
    streamlit run src/app.py
