@@ -11,14 +11,14 @@ This project implements a hybrid retrieval + reasoning pipeline using:
 
 ## Quick start (Windows / PowerShell) 
 
-1. Clone the repo and change into it: 
+1. Clone the repo and change into it:  
 
    git clone <repo-url>
    cd blue-enigma-ai
 
 2. Copy the example env and fill in secrets:
 
-   Copy-Item .env.example .env
+   Copy-Item .env.example .env 
    # then open .env and paste keys for OpenAI, Pinecone, Neo4j
 
 3. Bootstrap the Python environment (PowerShell):
