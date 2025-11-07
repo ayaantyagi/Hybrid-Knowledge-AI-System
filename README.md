@@ -44,7 +44,7 @@ This project implements a hybrid retrieval + reasoning pipeline using:
 
 ## Files 
 - `src/neo4j_loader.py` — loads location csv into Neo4j
-- `src/pinecone_uploader.py` — embeds & upserts docs to Pinecone
+- `src/pinecone_uploader.py` — embeds & upserts docs to Pinecone 
 - `src/embeddings.py` — OpenAI embedding helper
 - `src/hybrid_chat.py` — main pipeline that fuses Pinecone + Neo4j
 - `src/app.py` — simple Streamlit demo
