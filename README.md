@@ -39,7 +39,7 @@ This project implements a hybrid retrieval + reasoning pipeline using:
    python src/pinecone_uploader.py
  
 6. Run the Streamlit demo:
-
+ 
    streamlit run src/app.py 
 
 ## Files 
