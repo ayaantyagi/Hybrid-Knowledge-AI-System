@@ -24,7 +24,7 @@ This project implements a hybrid retrieval + reasoning pipeline using:
 3. Bootstrap the Python environment (PowerShell):
 
    .\setup.ps1
-
+ 
    To also run tests during setup:
 
    .\setup.ps1 -RunTests
