@@ -62,7 +62,7 @@ This README is tailored for the Blue Enigma Labs technical challenge submission 
 - Retrieval & Reasoning: `src/hybrid_chat.py` combines Pinecone (semantic docs) + Neo4j (structured facts) to build a prompt and call OpenAI to produce an answer with citations
 - UI: `src/app.py` (Streamlit) exposes an interactive demo showing answer, supporting docs, and graph hits/visualization
 
-## Component contracts (brief)
+## Component contracts (brief)  
 
 - `src.embeddings.get_embeddings(texts: str|List[str], model: str) -> List[List[float]]`
   - Inputs: a string or list of strings
