@@ -81,7 +81,7 @@ This README is tailored for the Blue Enigma Labs technical challenge submission 
 
 - `src.hybrid_chat.answer_query(query: str) -> str`
   - Inputs: natural language query
-  - Behavior: queries Pinecone and Neo4j, builds a combined prompt, calls OpenAI ChatCompletion, returns generated text
+  - Behavior: queries Pinecone and Neo4j, builds a combined prompt, calls OpenAI ChatCompletion, returns generated text 
   - Errors: clear runtime errors when OpenAI or required env vars are missing
 
 ## Data format
