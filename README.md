@@ -31,7 +31,7 @@ This project implements a hybrid retrieval + reasoning pipeline using:
 
 4. Start Neo4j (Desktop or Docker). Example Docker:
 
-   docker run --name neo4j -p7474:7474 -p7687:7687 -e NEO4J_AUTH=neo4j/test neo4j:5
+   docker run --name neo4j -p7474:7474 -p7687:7687 -e NEO4J_AUTH=neo4j/test neo4j:5 
 
 5. Load data (after setting .env and starting Neo4j):
 
