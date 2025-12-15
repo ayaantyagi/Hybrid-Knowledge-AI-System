@@ -55,7 +55,7 @@ Brief: this project implements a hybrid retrieval + reasoning pipeline that comb
 
 This README is tailored for the Blue Enigma Labs technical challenge submission and includes setup, architecture, component contracts, run/test instructions, and a short 2-minute Loom script you can record.
 
-## Architecture (high level)
+## Architecture (high level) 
 
 - Ingest: `data/docs.csv` -> `src/pinecone_uploader.py` -> Pinecone (embedding + upsert)
 - Graph: `data/locations.csv` -> `src/neo4j_loader.py` -> Neo4j; optional HTML export via `pyvis`
