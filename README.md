@@ -5,7 +5,7 @@
 
 ## Summary
 This project implements a hybrid retrieval + reasoning pipeline using:
-- **Neo4j** for structured, graph knowledge (locations & relations),
+- **Neo4j** for structured, graph knowledge (locations & relations), 
 - **Pinecone** for semantic retrieval over documents,   
 - **OpenAI GPT** for reasoning and natural language responses.
    
