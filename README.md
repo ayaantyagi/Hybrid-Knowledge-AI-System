@@ -13,7 +13,7 @@ This project implements a hybrid retrieval + reasoning pipeline using:
 
 1. Clone the repo and change into it:   
  
-   git clone <repo-url> 
+   git clone <repo-url>  
    cd blue-enigma-ai   
 
 2. Copy the example env and fill in secrets:  
