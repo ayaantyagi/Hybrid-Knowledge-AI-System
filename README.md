@@ -89,7 +89,7 @@ This README is tailored for the Blue Enigma Labs technical challenge submission 
 - `data/docs.csv` (example rows provided in repo): columns `id,text,metadata` where `metadata` is a JSON string containing keys like `source`, `text_snippet`, `neo4j_id`.
 - `data/locations.csv` (expected): `id,name,lat,lon,description,tags` (CSV headers must match)
 
-## Required environment variables (.env)
+## Required environment variables (.env) 
 
 Copy `.env.example` -> `.env` and fill values.
 
