@@ -1,4 +1,4 @@
-# Blue Enigma — Hybrid Knowledge AI System
+ # Blue Enigma — Hybrid Knowledge AI System
 
 [![CI](https://github.com/ayaantyagi/BLUE-ENIGMA-AL/actions/workflows/ci.yml/badge.svg)](https://github.com/ayaantyagi/BLUE-ENIGMA-AL/actions/workflows/ci.yml)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
@@ -17,7 +17,7 @@ This project implements a hybrid retrieval + reasoning pipeline using:
    cd blue-enigma-ai   
 
 2. Copy the example env and fill in secrets:  
-
+ 
    Copy-Item .env.example .env 
    # then open .env and paste keys for OpenAI, Pinecone, Neo4j
 
