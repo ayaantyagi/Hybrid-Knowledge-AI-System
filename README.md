@@ -106,7 +106,7 @@ Copy `.env.example` -> `.env` and fill values.
 # create venv (only once)
 python -m venv .venv
 .\.venv\Scripts\Activate.ps1
-
+ 
 # install dependencies
 pip install -r requirements.txt
 
