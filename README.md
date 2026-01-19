@@ -25,7 +25,7 @@ This project implements a hybrid retrieval + reasoning pipeline using:
 
    .\setup.ps1
  
-   To also run tests during setup:
+   To also run tests during setup:    
 
    .\setup.ps1 -RunTests
 
